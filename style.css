@@ -1,0 +1,391 @@
+:root {
+  --color-1: #6c5ce7;
+  --color-2: #00cec9;
+  --color-3: #fd79a8;
+  --color-4: #e17055;
+  --color-5: #0984e3;
+
+  --theme-color: var(--color-1);
+  --font-main: 'Roboto', sans-serif;
+
+  --bg-light: #e0e0e0;
+  --bg-dark: #1e1e1e;
+  --text-light: #1e1e1e;
+  --text-dark: #e0e0e0;
+
+  --radius: 12px;
+  --shadow-inset-light: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
+  --shadow-inset-dark: inset 6px 6px 12px #141414, inset -6px -6px 12px #2c2c2c;
+  --shadow-out-light: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  --shadow-out-dark: 6px 6px 12px #141414, -6px -6px 12px #2c2c2c;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  color: var(--theme-color);
+  background-color: var(--bg-dark);
+  transition: all 0.3s ease;
+}
+
+body.light {
+  background-color: var(--bg-light);
+  color: var(--theme-color);
+}
+
+img {
+  max-width: 100%;
+  border-radius: var(--radius);
+}
+
+.color-options {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.color-swatch {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-dark);
+  cursor: pointer;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+.color-1 { background-color: var(--color-1); }
+.color-2 { background-color: var(--color-2); }
+.color-3 { background-color: var(--color-3); }
+.color-4 { background-color: var(--color-4); }
+.color-5 { background-color: var(--color-5); }
+
+.color-swatch.active {
+  outline: 2px solid var(--theme-color);
+  outline-offset: 2px;
+}
+
+/* Floating Settings */
+.floating-settings {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 12px;
+  border-radius: var(--radius);
+}
+
+.floating-settings button {
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  color: var(--theme-color);
+  cursor: pointer;
+}
+
+.settings-panel {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: var(--radius);
+  background: inherit;
+  box-shadow: var(--shadow-out-dark);
+}
+
+body.light .settings-panel {
+  box-shadow: var(--shadow-out-light);
+}
+
+.hidden {
+  display: none;
+}
+
+.setting-group {
+  margin-bottom: 10px;
+}
+
+.setting-group label {
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 5px;
+  color: var(--theme-color);
+}
+
+.setting-group select {
+  width: 100%;
+  padding: 6px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--theme-color);
+  font-family: var(--font-main);
+}
+
+/* Neumorphic Base */
+.neumorphic {
+  border-radius: var(--radius);
+  transition: all 0.2s ease-in-out;
+}
+
+body.light .neumorphic {
+  background: var(--bg-light);
+  box-shadow: var(--shadow-out-light);
+}
+
+body.dark .neumorphic {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-out-dark);
+}
+
+body.dark .neumorphic:active {
+  box-shadow: var(--shadow-inset-dark);
+}
+
+body.light .neumorphic:active {
+  box-shadow: var(--shadow-inset-light);
+}
+
+.neumorphic:hover {
+  box-shadow: 0 0 12px var(--theme-color);
+}
+
+.neumorphic:hover:not(.no-hover) {
+  box-shadow: 0 0 12px var(--theme-color);
+}
+
+/* Profile Section */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 15px;
+}
+
+.profile-photo {
+  width: 120px; /* atau sesuai kebutuhan */
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 3px; /* kasih ruang untuk efek shadow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+body.light .profile-photo img {
+  box-shadow: var(--shadow-out-light);
+}
+
+.profile-name h1 {
+  text-align: center;
+  margin: 20px 0 5px;
+  font-size: 1.8rem;
+  color: var(--theme-color);
+}
+
+.profile-bio {
+  margin-top: 20px;
+  text-align: center;
+  max-width: 1000px;
+  font-size: 0.95rem;
+  color: var(--theme-color);
+}
+
+.profile-socials {
+  text-align: center;
+  margin: 20px 0;
+  display: block;
+  font-size: 35px;
+  gap: 25px;
+}
+
+.profile-socials a {
+  font-size: 1.2rem;
+  color: var(--theme-color);
+  text-decoration: none;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.stat-box {
+  padding: 10px 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+}
+
+.stat-box strong {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--theme-color);
+}
+
+.stat-box span {
+  font-size: 0.85rem;
+  color: var(--theme-color);
+}
+
+/* ===== Music Section ===== */
+.profile-music {
+  padding: 1rem;
+  margin: 2rem auto;
+  max-width: 1000px;
+  text-align: center;
+  font-family: var(--font-family);
+}
+
+.music-section .title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: var(--theme-color);
+}
+
+.song-title {
+  font-size: 1rem;
+  margin-bottom: 25px;
+  font-style: italic;
+  color: var(--text-color);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.3rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 50%;
+  color: var(--theme-color);
+  box-shadow: var(--shadow-out);
+  background-color: inherit;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 20px;
+}
+
+.controls button:hover {
+  box-shadow: 0 0 8px var(--theme-color);
+}
+
+.controls button:active {
+  box-shadow: var(--shadow-inset);
+}
+
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: var(--track-bg, rgba(0, 0, 0, 0.1));
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-inset);
+  margin-top: 20px; 
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background-color: var(--theme-color);
+  transition: width 0.2s linear;
+}
+
+.time {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  padding: 0 0.2rem;
+}
+
+.footer {
+  margin: 40px 0 20px;
+  font-size: 0.8rem;
+  color: var(--theme-color);
+  text-align: center;
+}
+
+/* Responsive Layout */
+@media (max-width: 480px) {
+  .stat-box {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .stat-box {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .profile-photo img {
+    width: 90px;
+    height: 90px;
+  }
+  .profile-name h1 {
+    font-size: 1.4rem;
+  }
+  .profile-bio {
+    font-size: 0.85rem;
+  }
+  .profile-socials a {
+    font-size: 1rem;
+  }
+  .stat-box strong {
+    font-size: 1rem;
+  }
+  .stat-box span {
+    font-size: 0.75rem;
+  }
+  .setting-group label,
+  .setting-group select {
+    font-size: 0.85rem;
+  }
+  .floating-settings button {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stat-box {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .profile-section {
+    padding: 60px 40px;
+  }
+  .profile-photo img {
+    width: 160px;
+    height: 160px;
+  }
+  .profile-name h1 {
+    font-size: 2.2rem;
+  }
+  .profile-bio {
+    font-size: 1.05rem;
+    max-width: 600px;
+  }
+  .profile-socials a {
+    font-size: 1.5rem;
+  }
+  .stat-box strong {
+    font-size: 1.3rem;
+  }
+  .stat-box span {
+    font-size: 1rem;
+  }
+}

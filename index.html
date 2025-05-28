@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neumorphic</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Playfair+Display&family=Fira+Sans&family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark" data-theme-color="color-1" data-font="Georgia">
+
+  <!-- Floating Settings -->
+  <div class="floating-settings neumorphic">
+    <button id="settingsToggle" title="Settings"><i class="fas fa-gear"></i></button>
+    <div class="settings-panel hidden" id="settingsPanel">
+      <div class="setting-group">
+      <label>Color</label>
+      <div id="colorSelector" class="color-options">
+      <div class="color-swatch color-1" data-color="color-1"></div>
+      <div class="color-swatch color-2" data-color="color-2"></div>
+      <div class="color-swatch color-3" data-color="color-3"></div>
+      <div class="color-swatch color-4" data-color="color-4"></div>
+      <div class="color-swatch color-5" data-color="color-5"></div>
+      </div>
+      </div>
+      <div class="setting-group">
+        <label>Font</label>
+        <select id="fontSelector">
+          <option value="Roboto">Roboto</option>
+          <option value="Montserrat">Montserrat</option>
+          <option value="'Segoe UI', sans-serif">Segoe UI</option>
+          <option value="'Courier New', monospace">Courier New</option>
+          <option value="'Comic Sans MS', cursive">Comic Sans</option>
+          <option value="'Georgia', serif">Georgia</option>
+          <option value="'Trebuchet MS', sans-serif">Trebuchet</option>
+        </select>
+      </div>
+      <div class="setting-group">
+        <label>Theme</label>
+        <select id="themeSelector">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Section -->
+  <header class="profile-section">
+    <div class="profile-photo neumorphic">
+      <img src="neumorphic.png" alt="Profile" />
+    </div>
+    <div class="profile-info">      
+      <div class="profile-name">
+        <h1>Art Killers</h1>
+      </div>
+      
+      <p class="profile-bio">Full-time writer. Coffee & code lover. Sharing stories one pixel at a time.</p>
+      
+      <!-- Social Media -->
+      <div class="profile-socials">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-telegram"></i></a>
+        <a href="#"><i class="fas fa-envelope"></i></a>
+      </div>
+
+      <!-- Info Stats -->            
+      <div class="profile-stats">     
+      <div class="stat-box neumorphic"><strong> </strong><span>9
+      Postingan</span></div>
+      <div class="stat-box neumorphic"><strong> </strong><span>240K
+      Followers</span></div>
+      <div class="stat-box neumorphic"><strong> </strong><span>420
+      Following</span></div>
+      </div>
+      
+      <!-- Music Section -->
+      <section class="profile-music neumorphic">
+       <div class="music-section">
+    <div class="title">Sound Track</div>
+    <div id="songTitle" class="song-title"> • • • </div>
+
+    <div class="controls">
+      <button class="btn-prev" id="btnPrev" title="Previous Song">
+        <i class="fas fa-backward"></i>
+      </button>
+
+      <button class="btn-playpause" id="btnPlayPause" title="Play/Pause">
+        <i class="fas fa-play" id="iconPlay"></i>
+        <i class="fas fa-pause" id="iconPause" style="display:none;"></i>
+      </button>
+
+      <button class="btn-next" id="btnNext" title="Next Song">
+        <i class="fas fa-forward"></i>
+      </button>
+    </div>
+
+    <div class="progress-container" id="progressContainer">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="time">
+      <span id="currentTime">00:00</span>
+      <span id="duration">00:00</span>
+    </div>
+    </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+       <p>© 2025 Art Killers.</p>
+      </footer>
+      </div>
+    </header>
+    
+  <audio id="audio" preload="metadata"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
