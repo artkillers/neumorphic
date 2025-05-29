@@ -6,7 +6,7 @@
   --color-5: #0984e3;
 
   --theme-color: var(--color-1);
-  --font-main: 'Roboto', sans-serif;
+  --font-main: 'Georgia', sans-serif;
 
   --bg-light: #e0e0e0;
   --bg-dark: #1e1e1e;
@@ -65,10 +65,54 @@ img {
   outline-offset: 2px;
 }
 
+.typed-text {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--theme-color);
+}
+
+.profile-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-dark); /* atau var(--bg-light) tergantung tema */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+/* Neumorphic Preload Box */
+.preload {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: var(--theme-color);
+  border-radius: 50%;
+}
+
+.profile-preloader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Tema terang */
+body.light .profile-preloader {
+  background: var(--bg-light);
+}
+
 /* Floating Settings */
 .floating-settings {
   position: fixed;
-  top: 20px;
+  top: 30px;
   right: 20px;
   z-index: 1000;
   padding: 12px;
@@ -163,7 +207,7 @@ body.light .neumorphic:active {
 .profile-photo {
   width: 120px; /* atau sesuai kebutuhan */
   height: 120px;
-  border-radius: 50%;
+  border-radius: var(--radius);
   overflow: hidden;
   padding: 3px; /* kasih ruang untuk efek shadow */
   display: flex;
@@ -176,7 +220,7 @@ body.light .neumorphic:active {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: var(--radius);
 }
 
 body.light .profile-photo img {
@@ -186,12 +230,13 @@ body.light .profile-photo img {
 .profile-name h1 {
   text-align: center;
   margin: 20px 0 5px;
-  font-size: 1.8rem;
+  font-size: 3rem;
   color: var(--theme-color);
 }
 
 .profile-bio {
   margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   max-width: 1000px;
   font-size: 0.95rem;
@@ -200,14 +245,14 @@ body.light .profile-photo img {
 
 .profile-socials {
   text-align: center;
-  margin: 20px 0;
+  margin: 25px 0;
   display: block;
-  font-size: 35px;
+  font-size: 25px;
   gap: 25px;
 }
 
-.profile-socials a {
-  font-size: 1.2rem;
+.profile-socials i {
+  font-size: 1.4rem;
   color: var(--theme-color);
   text-decoration: none;
 }
@@ -243,19 +288,12 @@ body.light .profile-photo img {
   max-width: 1000px;
   text-align: center;
   font-family: var(--font-family);
-}
-
-.music-section .title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  color: var(--theme-color);
-}
+} 
 
 .song-title {
   font-size: 1rem;
-  margin-bottom: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-style: italic;
   color: var(--text-color);
 }
@@ -278,7 +316,6 @@ body.light .profile-photo img {
   box-shadow: var(--shadow-out);
   background-color: inherit;
   transition: all 0.2s ease-in-out;
-  margin-bottom: 20px;
 }
 
 .controls button:hover {
@@ -296,8 +333,7 @@ body.light .profile-photo img {
   border-radius: var(--radius);
   overflow: hidden;
   cursor: pointer;
-  box-shadow: var(--shadow-inset);
-  margin-top: 20px; 
+  box-shadow: var(--shadow-inset);  
 }
 
 .progress {
@@ -338,13 +374,13 @@ body.light .profile-photo img {
     height: 90px;
   }
   .profile-name h1 {
-    font-size: 1.4rem;
+    font-size: 3rem;
   }
   .profile-bio {
     font-size: 0.85rem;
   }
-  .profile-socials a {
-    font-size: 1rem;
+  .profile-socials i {
+    font-size: 1.4rem;
   }
   .stat-box strong {
     font-size: 1rem;
@@ -379,7 +415,7 @@ body.light .profile-photo img {
     font-size: 1.05rem;
     max-width: 600px;
   }
-  .profile-socials a {
+  .profile-socials i {
     font-size: 1.5rem;
   }
   .stat-box strong {

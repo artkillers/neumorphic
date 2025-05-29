@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Playfair+Display&family=Fira+Sans&family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark" data-theme-color="color-1" data-font="Georgia">
+<body class="light" data-theme-color="color-1" data-font="Georgia">
 
   <!-- Floating Settings -->
   <div class="floating-settings neumorphic">
@@ -27,23 +27,30 @@
       <div class="setting-group">
         <label>Font</label>
         <select id="fontSelector">
+          <option value="'Georgia', serif">Georgia</option>
           <option value="Roboto">Roboto</option>
           <option value="Montserrat">Montserrat</option>
           <option value="'Segoe UI', sans-serif">Segoe UI</option>
           <option value="'Courier New', monospace">Courier New</option>
           <option value="'Comic Sans MS', cursive">Comic Sans</option>
-          <option value="'Georgia', serif">Georgia</option>
           <option value="'Trebuchet MS', sans-serif">Trebuchet</option>
         </select>
       </div>
       <div class="setting-group">
         <label>Theme</label>
         <select id="themeSelector">
-          <option value="dark">Dark</option>
           <option value="light">Light</option>
+          <option value="dark">Dark</option>
         </select>
       </div>
     </div>
+   </div>
+   
+  <!-- Preloader -->
+  <div class="profile-preloader" id="profilePreloader">
+  <div class="preload neumorphic" id="secretIcon" title="Secret User">
+    <i class="fas fa-user-secret"></i>
+  </div>
   </div>
 
   <!-- Profile Section -->
@@ -55,8 +62,7 @@
       <div class="profile-name">
         <h1>Art Killers</h1>
       </div>
-      
-      <p class="profile-bio">Full-time writer. Coffee & code lover. Sharing stories one pixel at a time.</p>
+      <div class="typed-text"><span id="typed"></span></div>
       
       <!-- Social Media -->
       <div class="profile-socials">
@@ -65,6 +71,8 @@
         <a href="#"><i class="fab fa-telegram"></i></a>
         <a href="#"><i class="fas fa-envelope"></i></a>
       </div>
+      
+      <p class="profile-bio">Full-time writer. Coffee & code lover. Sharing stories one pixel at a time.</p>
 
       <!-- Info Stats -->            
       <div class="profile-stats">     
@@ -79,7 +87,6 @@
       <!-- Music Section -->
       <section class="profile-music neumorphic">
        <div class="music-section">
-    <div class="title">Sound Track</div>
     <div id="songTitle" class="song-title"> • • • </div>
 
     <div class="controls">
@@ -116,6 +123,7 @@
     </header>
     
   <audio id="audio" preload="metadata"></audio>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="script.js"></script>
 </body>
 </html>

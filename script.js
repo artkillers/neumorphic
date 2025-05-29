@@ -145,6 +145,27 @@ playBtn.addEventListener("click", togglePlayPause);
 btnPrev.addEventListener("click", prevSong);
 btnNext.addEventListener("click", nextSong);
 
+document.addEventListener("DOMContentLoaded", () => {
+  const preloader = document.getElementById("profilePreloader");
+  const secretIcon = document.getElementById("secretIcon");
+
+  // Klik untuk langsung buka
+  secretIcon.addEventListener("click", () => {
+    preloader.style.opacity = "0";
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 300); // tunggu animasi fade-out
+  });
+});
+
+const typed = new Typed("#typed", {
+  strings: ["Creative Developer", "Enthusiast Digital", "Web Designer", "Tech Explorer"],
+  typeSpeed: 60,
+  backSpeed: 40,
+  backDelay: 1500,
+  loop: true,
+});
+
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("selectstart", e => e.preventDefault());
 document.addEventListener("copy", e => e.preventDefault());
