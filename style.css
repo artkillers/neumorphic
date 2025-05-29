@@ -132,11 +132,6 @@ body.light .profile-preloader {
   padding: 10px;
   border-radius: var(--radius);
   background: inherit;
-  box-shadow: var(--shadow-out-dark);
-}
-
-body.light .settings-panel {
-  box-shadow: var(--shadow-out-light);
 }
 
 .hidden {
@@ -228,6 +223,29 @@ body.dark .anti-neumorphic:active {
   box-shadow: 0 0 12px var(--theme-color);
 }
 
+.box-inout {
+  border-radius: var(--radius);
+  background: var(--bg-light); /* atau var(--bg-dark) tergantung mode */
+  box-shadow: var(--shadow-out-light); /* atau var(--shadow-out-dark) */
+  transition: all 0.2s ease-in-out;
+}
+body.dark .box-inout {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-out-dark);
+}
+
+.box-inset {
+  border-radius: var(--radius);
+  background: var(--bg-light);
+  box-shadow: var(--shadow-inset-light);
+  transition: all 0.2s ease-in-out;
+}
+
+body.dark .box-inset {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-inset-dark);
+}
+
 /* Profile Section */
 .profile-section {
   display: flex;
@@ -313,36 +331,6 @@ body.light .profile-photo img {
   margin: 2rem auto;
   max-width: 1000px;
   text-align: center;
-  font-family: var(--font-main);
-  border-radius: var(--radius);
-  background: var(--bg-light); /* akan disesuaikan di mode dark */
-  box-shadow: var(--shadow-out-light);
-}
-
-body.dark .profile-music {
-  background: var(--bg-dark);
-  box-shadow: var(--shadow-out-dark);
-}
-
-.song-title {
-  font-size: 1rem;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-style: italic;
-  color: var(--text-light);
-}
-
-body.dark .song-title {
-  color: var(--text-dark);
-}
-
-
-/* ===== Music Section ===== */
-.profile-music {
-  padding: 1rem;
-  margin: 2rem auto;
-  max-width: 1000px;
-  text-align: center;
   font-family: var(--font-family);
 } 
 
@@ -416,13 +404,19 @@ body.dark .song-title {
   height: 54px;
 }
 
-.footer {
-  margin: 40px auto 20px;
+footer {
+  text-align: center;
+  padding: 1rem 0;
   font-size: 0.8rem;
   color: var(--theme-color);
-  text-align: center;
-  padding: 1rem 2rem;
-  border-radius: var(--radius);
+}
+
+footer a {
+  color: var(--theme-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0 0.3rem;
+  cursor: pointer;
 }
 
 /* Responsive Layout */

@@ -8,12 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Playfair+Display&family=Fira+Sans&family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="light" data-theme-color="color-1" data-font="Georgia">
+<body class="dark" data-theme-color="color-1" data-font="Georgia">
 
   <!-- Floating Settings -->
   <div class="floating-settings anti-neumorphic">
     <button id="settingsToggle" title="Settings"><i class="fas fa-gear"></i></button>
-    <div class="settings-panel anti-neumorphic hidden" id="settingsPanel">
+    <div class="settings-panel box-inset hidden" id="settingsPanel">
       <div class="setting-group">
       <label>Color</label>
       <div id="colorSelector" class="color-options">
@@ -39,8 +39,8 @@
       <div class="setting-group">
         <label>Theme</label>
         <select id="themeSelector">
-          <option value="light">Light</option>
           <option value="dark">Dark</option>
+          <option value="light">Light</option>
         </select>
       </div>
     </div>
@@ -55,7 +55,7 @@
 
   <!-- Profile Section -->
   <header class="profile-section">
-    <div class="profile-photo anti-neumorphic">
+    <div class="profile-photo box-inset">
       <img src="neumorphic.png" alt="Profile" />
     </div>
     <div class="profile-info">      
@@ -76,35 +76,35 @@
 
       <!-- Info Stats -->            
       <div class="profile-stats">     
-      <div class="stat-box neumorphic"><br>
-      <span>98 Postingan</span></div>
-      <div class="stat-box neumorphic"><br>
+      <div class="stat-box box-inout"><br>
+      <span>98 Unfollow</span></div>
+      <div class="stat-box box-inout"><br>
       <span>420K Followers</span></div>
-      <div class="stat-box neumorphic"><br>
+      <div class="stat-box box-inout"><br>
       <span>310 Following</span></div>
       </div>
       
       <!-- Music Section -->
-      <section class="profile-music neumorphic">
+      <section class="profile-music box-inset">
        <div class="music-section">
     <div id="songTitle" class="song-title"> • • • </div>
 
     <div class="controls">
-      <button class="btn-prev anti-neumorphic" id="btnPrev" title="Previous Song">
+      <button class="btn-prev neumorphic" id="btnPrev" title="Previous Song">
         <i class="fas fa-backward"></i>
       </button>
 
-      <button class="btn-playpause anti-neumorphic" id="btnPlayPause" title="Play/Pause">
+      <button class="btn-playpause neumorphic" id="btnPlayPause" title="Play/Pause">
         <i class="fas fa-play" id="iconPlay"></i>
         <i class="fas fa-pause" id="iconPause" style="display:none;"></i>
       </button>
 
-      <button class="btn-next anti-neumorphic" id="btnNext" title="Next Song">
+      <button class="btn-next neumorphic" id="btnNext" title="Next Song">
         <i class="fas fa-forward"></i>
       </button>
     </div>
 
-    <div class="progress-container anti-neumorphic" id="progressContainer">
+    <div class="progress-container neumorphic" id="progressContainer">
       <div class="progress" id="progress"></div>
     </div>
 
@@ -116,8 +116,8 @@
       </section>
 
       <!-- Footer -->
-      <footer class="footer anti-neumorphic">
-       <p>© 2025 Art Killers.</p>
+      <footer>
+      <a href="artkillers.github.io">© Art Killers • All rights reserved.</a>
       </footer>
       </div>
     </header>
