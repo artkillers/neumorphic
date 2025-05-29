@@ -196,6 +196,38 @@ body.light .neumorphic:active {
   box-shadow: 0 0 12px var(--theme-color);
 }
 
+/* Anti-Neumorphic Base */
+.anti-neumorphic {
+  border-radius: var(--radius);
+  transition: all 0.2s ease-in-out;
+}
+
+body.light .anti-neumorphic {
+  background: var(--bg-light);
+  box-shadow: var(--shadow-inset-light);
+}
+
+body.dark .anti-neumorphic {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-inset-dark);
+}
+
+body.light .anti-neumorphic:active {
+  box-shadow: var(--shadow-out-light);
+}
+
+body.dark .anti-neumorphic:active {
+  box-shadow: var(--shadow-out-dark);
+}
+
+.anti-neumorphic:hover {
+  box-shadow: 0 0 12px var(--theme-color);
+}
+
+.anti-neumorphic:hover:not(.no-hover) {
+  box-shadow: 0 0 12px var(--theme-color);
+}
+
 /* Profile Section */
 .profile-section {
   display: flex;
@@ -270,16 +302,40 @@ body.light .profile-photo img {
   text-align: center;
 }
 
-.stat-box strong {
-  display: block;
-  font-size: 1.1rem;
-  color: var(--theme-color);
-}
-
 .stat-box span {
   font-size: 0.85rem;
   color: var(--theme-color);
 }
+
+/* ===== Music Section ===== */
+.profile-music {
+  padding: 1rem;
+  margin: 2rem auto;
+  max-width: 1000px;
+  text-align: center;
+  font-family: var(--font-main);
+  border-radius: var(--radius);
+  background: var(--bg-light); /* akan disesuaikan di mode dark */
+  box-shadow: var(--shadow-out-light);
+}
+
+body.dark .profile-music {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-out-dark);
+}
+
+.song-title {
+  font-size: 1rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-style: italic;
+  color: var(--text-light);
+}
+
+body.dark .song-title {
+  color: var(--text-dark);
+}
+
 
 /* ===== Music Section ===== */
 .profile-music {
@@ -300,30 +356,17 @@ body.light .profile-photo img {
 
 .controls {
   display: flex;
+  text-align: center;
   justify-content: center;
   gap: 25px;
   margin-bottom: 20px;
 }
 
-.controls button {
-  background: none;
-  border: none;
-  outline: none;
-  font-size: 1.3rem;
-  padding: 0.6rem 0.8rem;
-  border-radius: 50%;
-  color: var(--theme-color);
-  box-shadow: var(--shadow-out);
-  background-color: inherit;
-  transition: all 0.2s ease-in-out;
-}
-
-.controls button:hover {
-  box-shadow: 0 0 8px var(--theme-color);
-}
-
-.controls button:active {
-  box-shadow: var(--shadow-inset);
+.progress {
+  height: 100%;
+  width: 0%;
+  background-color: var(--theme-color);
+  transition: width 0.2s linear;
 }
 
 .progress-container {
@@ -336,13 +379,6 @@ body.light .profile-photo img {
   box-shadow: var(--shadow-inset);  
 }
 
-.progress {
-  height: 100%;
-  width: 0%;
-  background-color: var(--theme-color);
-  transition: width 0.2s linear;
-}
-
 .time {
   margin-top: 20px;
   display: flex;
@@ -352,11 +388,41 @@ body.light .profile-photo img {
   padding: 0 0.2rem;
 }
 
+.btn-prev,
+.btn-next,
+.btn-playpause {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;er;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s ease, color 0.3s ease;
+}
+
+.btn-prev,
+.btn-next {
+  margin-top: 4px;
+  width: 44px;
+  height: 44px;
+}
+
+.btn-playpause {
+  width: 54px;
+  height: 54px;
+}
+
 .footer {
-  margin: 40px 0 20px;
+  margin: 40px auto 20px;
   font-size: 0.8rem;
   color: var(--theme-color);
   text-align: center;
+  padding: 1rem 2rem;
+  border-radius: var(--radius);
 }
 
 /* Responsive Layout */
