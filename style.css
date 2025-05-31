@@ -1,3 +1,10 @@
+/* ===== Global Base ===== */
+* {
+  -webkit-tap-highlight-color: transparent; 
+  -webkit-user-select: none; 
+  user-select: none;
+}
+
 :root {
   --color-1: #6c5ce7;
   --color-2: #00cec9;
@@ -12,46 +19,11 @@
   --bg-dark: #1e1e1e;
   --text-light: #1e1e1e;
   --text-dark: #e0e0e0;
-
   --radius: 12px;
   --shadow-inset-light: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
   --shadow-inset-dark: inset 6px 6px 12px #141414, inset -6px -6px 12px #2c2c2c;
   --shadow-out-light: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
   --shadow-out-dark: 6px 6px 12px #141414, -6px -6px 12px #2c2c2c;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-main);
-  color: var(--theme-color);
-  background-color: var(--bg-dark);
-  transition: all 0.3s ease;
-}
-
-body.light {
-  background-color: var(--bg-light);
-  color: var(--theme-color);
-}
-
-img {
-  max-width: 100%;
-  border-radius: var(--radius);
-}
-
-.color-options {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.3rem;
-}
-
-.color-swatch {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 2px solid var(--bg-dark);
-  cursor: pointer;
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
 }
 
 .color-1 { background-color: var(--color-1); }
@@ -60,56 +32,57 @@ img {
 .color-4 { background-color: var(--color-4); }
 .color-5 { background-color: var(--color-5); }
 
-.color-swatch.active {
-  outline: 2px solid var(--theme-color);
-  outline-offset: 2px;
+/* ===== Neumorphic Section ===== */
+.neumorphic {
+  border-radius: var(--radius);
+  transition: all 0.2s ease-in-out;
 }
-
-.typed-text {
-  font-size: 18px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  color: var(--theme-color);
-}
-
-.profile-preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--bg-dark); /* atau var(--bg-light) tergantung tema */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease;
-}
-
-/* Neumorphic Preload Box */
-.preload {
-  width: 80px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
-  color: var(--theme-color);
-  border-radius: 50%;
-}
-
-.profile-preloader.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Tema terang */
-body.light .profile-preloader {
+body.light .neumorphic {
   background: var(--bg-light);
+  box-shadow: var(--shadow-out-light);
+}
+body.dark .neumorphic {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-out-dark);
 }
 
-/* Floating Settings */
+body.dark .neumorphic:active {
+  box-shadow: var(--shadow-inset-dark);
+}
+body.light .neumorphic:active {
+  box-shadow: var(--shadow-inset-light);
+}
+
+.neumorphic:hover {
+  box-shadow: 0 0 12px var(--theme-color);
+}
+.neumorphic:hover:not(.no-hover) {
+  box-shadow: 0 0 12px var(--theme-color);
+}
+
+.box-inout {
+  border-radius: var(--radius);
+  background: var(--bg-light); 
+  box-shadow: var(--shadow-out-light); 
+  transition: all 0.2s ease-in-out;
+}
+body.dark .box-inout {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-out-dark);
+}
+
+.box-inset {
+  border-radius: var(--radius);
+  background: var(--bg-light);
+  box-shadow: var(--shadow-inset-light);
+  transition: all 0.2s ease-in-out;
+}
+body.dark .box-inset {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-inset-dark);
+}
+
+/* ===== Floating Section ===== */
 .floating-settings {
   position: fixed;
   top: 30px;
@@ -134,7 +107,7 @@ body.light .profile-preloader {
   background: inherit;
 }
 
-.hidden {
+.settings-panel.hidden {
   display: none;
 }
 
@@ -152,101 +125,119 @@ body.light .profile-preloader {
 .setting-group select {
   width: 100%;
   padding: 6px;
-  border-radius: 10px;
+  border-radius: var(--radius);
   border: none;
   background: transparent;
   color: var(--theme-color);
   font-family: var(--font-main);
 }
 
-/* Neumorphic Base */
-.neumorphic {
-  border-radius: var(--radius);
-  transition: all 0.2s ease-in-out;
+.rotating-gear {
+  animation: spin 3s linear infinite;
+  font-size: 24px; /* sesuaikan ukuran */
 }
 
-body.light .neumorphic {
+/* Keyframe animasi berputar */
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== Preloader Section ===== */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+
+.preload {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: var(--theme-color);
+  border-radius: var(--radius);
+}
+
+.preloader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.light .preloader {
   background: var(--bg-light);
-  box-shadow: var(--shadow-out-light);
 }
 
-body.dark .neumorphic {
-  background: var(--bg-dark);
-  box-shadow: var(--shadow-out-dark);
+/* ===== Elemen Section ===== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  color: var(--theme-color);
+  background-color: var(--bg-dark);
+  transition: all 0.3s ease;
 }
 
-body.dark .neumorphic:active {
-  box-shadow: var(--shadow-inset-dark);
+body.light {
+  background-color: var(--bg-light);
+  color: var(--theme-color);
 }
 
-body.light .neumorphic:active {
-  box-shadow: var(--shadow-inset-light);
+.typed-text {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--theme-color);
 }
 
-.neumorphic:hover {
-  box-shadow: 0 0 12px var(--theme-color);
+.color-options {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
 }
 
-.neumorphic:hover:not(.no-hover) {
-  box-shadow: 0 0 12px var(--theme-color);
-}
-
-/* Anti-Neumorphic Base */
-.anti-neumorphic {
+.color-swatch {
+  width: 25px;
+  height: 25px;
   border-radius: var(--radius);
-  transition: all 0.2s ease-in-out;
+  border: 2px solid var(--bg-dark);
+  cursor: pointer;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
 }
 
-body.light .anti-neumorphic {
-  background: var(--bg-light);
-  box-shadow: var(--shadow-inset-light);
+.color-swatch.active {
+  outline: 2px solid var(--theme-color);
+  outline-offset: 2px;
 }
 
-body.dark .anti-neumorphic {
-  background: var(--bg-dark);
-  box-shadow: var(--shadow-inset-dark);
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.8rem;
+  color: var(--theme-color);
 }
 
-body.light .anti-neumorphic:active {
-  box-shadow: var(--shadow-out-light);
+footer a {
+  color: var(--theme-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0 0.3rem;
+  cursor: pointer;
 }
 
-body.dark .anti-neumorphic:active {
-  box-shadow: var(--shadow-out-dark);
-}
-
-.anti-neumorphic:hover {
-  box-shadow: 0 0 12px var(--theme-color);
-}
-
-.anti-neumorphic:hover:not(.no-hover) {
-  box-shadow: 0 0 12px var(--theme-color);
-}
-
-.box-inout {
-  border-radius: var(--radius);
-  background: var(--bg-light); /* atau var(--bg-dark) tergantung mode */
-  box-shadow: var(--shadow-out-light); /* atau var(--shadow-out-dark) */
-  transition: all 0.2s ease-in-out;
-}
-body.dark .box-inout {
-  background: var(--bg-dark);
-  box-shadow: var(--shadow-out-dark);
-}
-
-.box-inset {
-  border-radius: var(--radius);
-  background: var(--bg-light);
-  box-shadow: var(--shadow-inset-light);
-  transition: all 0.2s ease-in-out;
-}
-
-body.dark .box-inset {
-  background: var(--bg-dark);
-  box-shadow: var(--shadow-inset-dark);
-}
-
-/* Profile Section */
+/* ===== Home Section ===== */
 .profile-section {
   display: flex;
   flex-direction: column;
@@ -269,6 +260,7 @@ body.dark .box-inset {
 .profile-photo img {
   width: 100%;
   height: 100%;
+  max-width: 100%;
   object-fit: cover;
   border-radius: var(--radius);
 }
@@ -326,7 +318,7 @@ body.light .profile-photo img {
 }
 
 /* ===== Music Section ===== */
-.profile-music {
+.music {
   padding: 1rem;
   margin: 2rem auto;
   max-width: 1000px;
@@ -381,7 +373,7 @@ body.light .profile-photo img {
 .btn-playpause {
   background: transparent;
   border: none;
-  border-radius: 50%;
+  border-radius: var(--radius);
   color: inherit;
   cursor: pointer;
   display: flex;
@@ -404,22 +396,7 @@ body.light .profile-photo img {
   height: 54px;
 }
 
-footer {
-  text-align: center;
-  padding: 1rem 0;
-  font-size: 0.8rem;
-  color: var(--theme-color);
-}
-
-footer a {
-  color: var(--theme-color);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0 0.3rem;
-  cursor: pointer;
-}
-
-/* Responsive Layout */
+/* ===== Responsibilities Layout ===== */
 @media (max-width: 480px) {
   .stat-box {
     grid-template-columns: repeat(3, 1fr);

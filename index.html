@@ -12,7 +12,7 @@
 
   <!-- Floating Settings -->
   <div class="floating-settings neumorphic">
-    <button id="settingsToggle" title="Settings"><i class="fas fa-gear"></i></button>
+    <button id="settingsToggle" title="Settings"><i class="fas fa-gear rotating-gear"></i></button>
     <div class="settings-panel box-inset hidden" id="settingsPanel">
       <div class="setting-group">
       <label>Color</label>
@@ -47,9 +47,9 @@
    </div>
    
   <!-- Preloader -->
-  <div class="profile-preloader" id="profilePreloader">
-  <div class="preload neumorphic" id="secretIcon" title="Secret User">
-    <i class="fas fa-user-secret"></i>
+  <div class="preloader" id="Preloader">
+  <div class="preload neumorphic" id="secretLoader" title="Secret Loader">
+    <i class="fas fa-fingerprint"></i>
   </div>
   </div>
 
@@ -57,7 +57,7 @@
   <header class="profile-section">
     <div class="profile-photo box-inset">
      <a href="#" onclick="location.reload();">
-  <img src="neumorphic.png" alt="Profile">
+  <img src="neumorphic.png" alt="neumorphic">
      </a>
     </div>
     <div class="profile-info">      
@@ -87,7 +87,7 @@
       </div>
       
       <!-- Music Section -->
-      <section class="profile-music box-inset">
+      <section class="music box-inset">
        <div class="music-section">
     <div id="songTitle" class="song-title"> • • • </div>
 
@@ -106,7 +106,7 @@
       </button>
     </div>
 
-    <div class="progress-container neumorphic" id="progressContainer">
+    <div class="progress-container box-inset" id="progressContainer">
       <div class="progress" id="progress"></div>
     </div>
 

@@ -146,11 +146,11 @@ btnPrev.addEventListener("click", prevSong);
 btnNext.addEventListener("click", nextSong);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const preloader = document.getElementById("profilePreloader");
-  const secretIcon = document.getElementById("secretIcon");
+  const preloader = document.getElementById("Preloader");
+  const secretLoader = document.getElementById("secretLoader");
 
   // Klik untuk langsung buka
-  secretIcon.addEventListener("click", () => {
+  secretLoader.addEventListener("click", () => {
     preloader.style.opacity = "0";
     setTimeout(() => {
       preloader.style.display = "none";
