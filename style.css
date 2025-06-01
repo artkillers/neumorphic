@@ -286,18 +286,26 @@ body.light .profile-photo img {
 }
 
 .profile-socials {
-  text-align: center;
-  margin: 25px 0;
-  display: block;
-  font-size: 25px;
+  display: flex;
+  justify-content: center;
   gap: 25px;
+  margin: 25px 0;
 }
 
-.profile-socials i {
-  font-size: 1.4rem;
+.profile-socials a i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
   color: var(--theme-color);
+  border-radius: var(--radius);
   text-decoration: none;
-}
+  font-size: 1rem;
+  transition: 0.3s ease;
+  outline: none;
+  border: none;
+} 
 
 .profile-stats {
   display: flex;
