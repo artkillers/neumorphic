@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neumorphic</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Playfair+Display&family=Fira+Sans&family=Montserrat&display=swap" rel="stylesheet">
+<style>
+/* ===== Global Base ===== */
+
+:root {
+  --color-1: #6c5ce7;
+  --color-2: #00cec9;
+  --color-3: #fd79a8;
+  --color-4: #e17055;
+  --color-5: #0984e3;
+
+  --theme-color: var(--color-1);
+  --font-main: 'Georgia', sans-serif;
+
+  --bg-light: #e0e0e0;
+  --bg-dark: #1e1e1e;
+  --text-light: #1e1e1e;
+  --text-dark: #e0e0e0;
+  --radius: 12px;
+  --shadow-inset-light: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
+  --shadow-inset-dark: inset 6px 6px 12px #141414, inset -6px -6px 12px #2c2c2c;
+  --shadow-out-light: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  --shadow-out-dark: 6px 6px 12px #141414, -6px -6px 12px #2c2c2c;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent; 
+  -webkit-user-select: none; 
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  color: var(--theme-color);
+  background-color: var(--bg-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+body.light {
+  background-color: var(--bg-light);
+  color: var(--theme-color);
+}
+
+/* ===== Neumorphic Section ===== */
+.neumorphic {
+  border-radius: var(--radius);
+  transition: all color 0.3s ease;
+}
+body.light .neumorphic {
+  background: var(--bg-light);
+  box-shadow: var(--shadow-out-light);
+}
+body.dark .neumorphic {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-out-dark);
+}
+
+body.dark .neumorphic:active {
+  box-shadow: var(--shadow-inset-dark);
+}
+body.light .neumorphic:active {
+  box-shadow: var(--shadow-inset-light);
+}
+
+.neumorphic:hover {
+  box-shadow: 0 0 12px var(--theme-color);
+}
+.neumorphic:hover:not(.no-hover) {
+  box-shadow: 0 0 12px var(--theme-color);
+}
+
+.box-inout {
+  border-radius: var(--radius);
+  background: var(--bg-light); 
+  box-shadow: var(--shadow-out-light); 
+  transition: all color 0.3s ease;
+}
+body.dark .box-inout {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-out-dark);
+}
+
+.box-inset {
+  border-radius: var(--radius);
+  background: var(--bg-light);
+  box-shadow: var(--shadow-inset-light);
+  transition: all color 0.3s ease;
+}
+body.dark .box-inset {
+  background: var(--bg-dark);
+  box-shadow: var(--shadow-inset-dark);
+}
+
+/* ===== Floating Section ===== */
+.floating-settings {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  z-index: 1000;
+  padding: 12px;
+  border-radius: var(--radius);
+}
+
+.floating-settings button {
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  color: var(--theme-color);
+  cursor: pointer;
+}
+
+.settings-panel {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: var(--radius);
+  background: inherit;
+}
+
+.settings-panel.hidden {
+  display: none;
+}
+
+.setting-group {
+  margin-bottom: 10px;
+}
+
+.setting-group label {
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 5px;
+  color: var(--theme-color);
+}
+
+.setting-group select {
+  width: 100%;
+  padding: 6px;
+  border-radius: var(--radius);
+  border: none;
+  background: transparent;
+  color: var(--theme-color);
+  font-family: var(--font-main);
+}
+
+.color-options {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.color-swatch {
+  width: 25px;
+  height: 25px;
+  border-radius: var(--radius);
+  border: 2px solid var(--bg-dark);
+  cursor: pointer;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+.color-swatch.active {
+  outline: 2px solid var(--theme-color);
+  outline-offset: 2px;
+}
+
+.color-1 { background-color: var(--color-1); }
+.color-2 { background-color: var(--color-2); }
+.color-3 { background-color: var(--color-3); }
+.color-4 { background-color: var(--color-4); }
+.color-5 { background-color: var(--color-5); }
+
+.rotating-gear {
+  animation: spin 3s linear infinite;
+  font-size: 24px; /* sesuaikan ukuran */
+}
+
+/* Keyframe animasi berputar */
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== Preloader Section ===== */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: all color 0.3s ease;
+}
+
+.preload {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: var(--theme-color);
+  border-radius: var(--radius);
+}
+
+.preloader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.light .preloader {
+  background: var(--bg-light);
+}
+
+/* ===== Elemen Section ===== */
+
+.typed-text {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--theme-color);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.8rem;
+  color: var(--theme-color);
+}
+
+footer a {
+  color: var(--theme-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0 0.3rem;
+  cursor: pointer;
+}
+
+/* ===== Home Section ===== */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 15px;
+}
+
+.profile-photo {
+  width: 120px; /* atau sesuai kebutuhan */
+  height: 120px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  padding: 3px; /* kasih ruang untuk efek shadow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: 0 0 12px var(--theme-color);
+}
+
+body.light .profile-photo img {
+  box-shadow: 0 0 12px var(--theme-color);
+}
+
+.profile-name h1 {
+  text-align: center;
+  margin: 20px 0 5px;
+  font-size: 3rem;
+  color: var(--theme-color);
+}
+
+.profile-bio {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 1000px;
+  font-size: 0.95rem;
+  color: var(--theme-color);
+}
+
+.profile-socials {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 25px 0;
+}
+
+.profile-socials a i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  color: var(--theme-color);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all color 0.3s ease;
+  outline: none;
+  border: none;
+} 
+
+.profile-stats {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.stat-box {
+  padding: 10px 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+}
+
+.stat-box span {
+  font-size: 0.85rem;
+  color: var(--theme-color);
+}
+
+/* ===== Music Section ===== */
+.music {
+  padding: 1rem;
+  margin: 2rem auto;
+  max-width: 1000px;
+  text-align: center;
+  font-family: var(--font-family);
+} 
+
+.song-title {
+  padding: 2rem;
+  font-size: 1rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-style: italic;
+  color: var(--text-color);
+}
+
+.controls {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background-color: var(--theme-color);
+  transition: all color 0.3s ease;
+}
+
+.progress-container {
+  width: 90%;
+  height: 8px;
+  margin: 0 auto;
+  background: var(--track-bg, rgba(0, 0, 0, 0.3));
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer; 
+  box-shadow: var(--shadow-inset);  
+}
+
+.time {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  padding: 0.9rem;
+}
+
+.btn-prev,
+.btn-next,
+.btn-playpause {
+  margin-bottom: 20px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;er;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all color 0.3s ease;
+}
+
+.btn-prev,
+.btn-next {
+  margin-top: 4px;
+  width: 44px;
+  height: 44px;
+}
+
+.btn-playpause {
+  width: 54px;
+  height: 54px;
+}
+
+/* ===== video Section ===== */
+
+.video {
+  font-family: var(--font-main);
+  color: var(--theme-color);
+  background-color: var(--bg-dark);
+  border-radius: var(--radius);
+  padding: 20px 20px;  
+  margin-bottom: 20px;
+  transition: all color 0.3s ease;
+}
+body.light .video {
+  background-color: var(--bg-light);
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 600;
+  color: var(--theme-color);
+}
+
+iframe {
+  margin-top: 30px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: var(--radius);
+}
+
+.video-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.video-thumb {
+  border-radius: var(--radius);
+  padding: 15px 15px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: var(--bg-dark);
+  transition: all color 0.3s ease;
+}
+
+body.light .video-thumb {
+  background-color: var(--bg-light);
+}
+
+.video-thumb:hover {
+  transform: scale(1.03);
+}
+
+.video-thumb img {
+  border-radius: var(--radius);
+  width: 100%;
+  display: block;
+}
+
+/* ===== Responsibilities Layout ===== */
+
+@media (max-width: 680px) {
+  body { 
+    padding: 1rem;
+  }
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-box {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .profile-photo img {
+    width: 90px;
+    height: 90px;
+  }
+  .profile-name h1 {
+    font-size: 2rem;
+  }
+  .profile-bio {
+    font-size: 0.85rem;
+  }
+  .profile-socials i {
+    font-size: 1.4rem;
+  }
+  .stat-box strong {
+    font-size: 1rem;
+  }
+  .stat-box span {
+    font-size: 0.75rem;
+  }
+  .setting-group label,
+  .setting-group select {
+    font-size: 0.85rem;
+  }
+  .floating-settings button {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 681px) {
+  body { 
+    padding: 2rem;
+  }
+  .floating-settings {
+    position: fixed;
+    top: 90px;
+    right: 40px;
+    z-index: 1000;
+    padding: 12px;
+    border-radius: var(--radius);
+  }
+  .video-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .stat-box {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .profile-section {
+    padding: 40px 40px;
+  }
+  .profile-photo {
+    width: 160px; /* atau sesuai kebutuhan */
+    height: 160px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    padding: 20px; /* kasih ruang untuk efek shadow */
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 20px;
+  }
+  .profile-photo img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: 0 0 12px var(--theme-color);
+  }
+  body.light .profile-photo img {
+    box-shadow: 0 0 12px var(--theme-color);
+  }
+  .profile-name h1 {
+    font-size: 3.5rem;
+  }
+  .profile-bio {
+    font-size: 1.05rem;
+    max-width: 600px;
+  }
+  .profile-socials i {
+    font-size: 1.5rem;
+  }
+  .stat-box strong {
+    font-size: 1.3rem;
+  }
+  .stat-box span {
+    font-size: 1rem;
+  }
+}
+</style>
+</head>
+<body class="dark" data-theme-color="color-1" data-font="Georgia" oncontextmenu="return false;" oncopy="return false;" onselectstart="return false;">
+
+  <!-- Floating Settings -->
+  <div class="floating-settings neumorphic">
+    <button id="settingsToggle" title="Settings"><i class="fas fa-gear rotating-gear"></i></button>
+    <div class="settings-panel box-inset hidden" id="settingsPanel">
+      <div class="setting-group">
+      <label>Color</label>
+      <div id="colorSelector" class="color-options">
+      <div class="color-swatch color-1" data-color="color-1"></div>
+      <div class="color-swatch color-2" data-color="color-2"></div>
+      <div class="color-swatch color-3" data-color="color-3"></div>
+      <div class="color-swatch color-4" data-color="color-4"></div>
+      <div class="color-swatch color-5" data-color="color-5"></div>
+      </div>
+      </div>
+      <div class="setting-group">
+        <label>Font</label>
+        <select id="fontSelector">
+          <option value="'Georgia', serif">Georgia</option>
+          <option value="Roboto">Roboto</option>
+          <option value="Montserrat">Montserrat</option>
+          <option value="'Segoe UI', sans-serif">Segoe UI</option>
+          <option value="'Courier New', monospace">Courier New</option>
+          <option value="'Comic Sans MS', cursive">Comic Sans</option>
+          <option value="'Trebuchet MS', sans-serif">Trebuchet</option>
+        </select>
+      </div>
+      <div class="setting-group">
+        <label>Theme</label>
+        <select id="themeSelector">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+        </select>
+      </div>
+    </div>
+   </div>
+   
+  <!-- Preloader -->
+  <div class="preloader" id="Preloader">
+  <div class="preload neumorphic" id="secretLoader" title="Secret Loader">
+    <i class="fas fa-music"></i>
+  </div>
+  </div>
+
+  <!-- Profile Section -->
+  <header class="profile-section">
+    <div class="profile-photo neumorphic">
+     <a href="#" onclick="location.reload();">
+  <img src="https://i.ibb.co/LzNVt1Dn/neumorphic.png" alt="neumorphic">
+     </a>
+    </div>
+    <div class="profile-info">      
+      <div class="profile-name">
+        <h1>NEUMORPHIC</h1>
+      </div>
+      
+      <div class="typed-text"><span id="typed"></span></div>
+      
+      <!-- Social Media -->
+      <div class="profile-socials">
+        <a href="#"><i class="fab fa-youtube neumorphic"></i></a>
+        <a href="#"><i class="fab fa-instagram neumorphic"></i></a>
+        <a href="#"><i class="fab fa-telegram neumorphic"></i></a>
+        <a href="#"><i class="fas fa-envelope neumorphic"></i></a>
+      </div>
+      
+      <p class="profile-bio">Sharing stories one pixel at a time,the creative space, where sound, rhythm, and emotion meet. Showcases the finest works, from original recordings, remixes, to collaborative projects, reflecting a musical journey and identity.</p>      
+            
+      <!-- Info Stats -->            
+      <div class="profile-stats">     
+      <div class="stat-box box-inout"><br>
+      <span>98 Unfollow</span></div>
+      <div class="stat-box box-inout"><br>
+      <span>420K Followers</span></div>
+      <div class="stat-box box-inout"><br>
+      <span>310 Following</span></div>
+      </div>
+      
+      <!-- Music Section -->
+      <section class="music box-inout">
+       <div class="music-section box-inset">
+    <div id="songTitle" class="song-title"> • • • </div>
+
+    <div class="controls">
+      <button class="btn-prev neumorphic" id="btnPrev" title="Previous Song">
+        <i class="fas fa-backward"></i>
+      </button>
+
+      <button class="btn-playpause neumorphic" id="btnPlayPause" title="Play/Pause">
+        <i class="fas fa-play" id="iconPlay"></i>
+        <i class="fas fa-pause" id="iconPause" style="display:none;"></i>
+      </button>
+
+      <button class="btn-next neumorphic" id="btnNext" title="Next Song">
+        <i class="fas fa-forward"></i>
+      </button>
+    </div>
+
+    <div class="progress-container box-inset" id="progressContainer">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="time">
+      <span id="currentTime">00:00</span>
+      <span id="duration">00:00</span>
+    </div>
+    </div>
+      </section>
+      
+   <!-- watching section -->
+   <div class="container box-inout">
+    <div class="video">
+      <iframe 
+         class="neumorphic" 
+         id="mainVideo"
+         src="https://www.youtube.com/embed/J3m3uptDf0Q"
+         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+         allowfullscreen>
+      </iframe>
+
+    <div class="video">
+      <div class="video-grid">
+        <!-- Thumbnail video -->
+        <div class="video-thumb neumorphic" onclick="changeVideo('dQw4w9WgXcQ')">
+          <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg" alt="Video 1">
+        </div>
+        <div class="video-thumb neumorphic" onclick="changeVideo('kXYiU_JCYtU')">
+          <img src="https://img.youtube.com/vi/kXYiU_JCYtU/0.jpg" alt="Video 2">
+        </div>
+        <div class="video-thumb neumorphic" onclick="changeVideo('9bZkp7q19f0')">
+          <img src="https://img.youtube.com/vi/9bZkp7q19f0/0.jpg" alt="Video 3">
+        </div>
+        <div class="video-thumb neumorphic" onclick="changeVideo('3JZ_D3ELwOQ')">
+          <img src="https://img.youtube.com/vi/3JZ_D3ELwOQ/0.jpg" alt="Video 4">
+        </div>
+        <div class="video-thumb neumorphic" onclick="changeVideo('fLexgOxsZu0')">
+          <img src="https://img.youtube.com/vi/fLexgOxsZu0/0.jpg" alt="Video 5">
+        </div>
+        <div class="video-thumb neumorphic" onclick="changeVideo('tAGnKpE4NCI')">
+          <img src="https://img.youtube.com/vi/tAGnKpE4NCI/0.jpg" alt="Video 6">
+        </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- watching section end -->
+
+  <!-- Footer -->
+  <footer>
+    <a href="https://artkillers.github.io">© Art Killers • All Rights Reserved.</a>
+  </footer>
+  </div>
+  </header>
+    
+<audio id="audio" preload="metadata"></audio>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+// Toggle Panel Settings
+const settingsToggle = document.getElementById("settingsToggle");
+const settingsPanel = document.getElementById("settingsPanel");
+
+// Buka/tutup panel saat tombol di-klik
+settingsToggle.addEventListener("click", (e) => {
+  e.stopPropagation(); // mencegah event bubbling
+  settingsPanel.classList.toggle("hidden");
+});
+
+// Tutup panel jika klik di luar
+document.addEventListener("click", (e) => {
+  if (!settingsPanel.contains(e.target) && !settingsToggle.contains(e.target)) {
+    settingsPanel.classList.add("hidden");
+  }
+});
+
+// Theme Toggle (dark / light)
+const themeSelector = document.getElementById("themeSelector");
+themeSelector.addEventListener("change", () => {
+  const theme = themeSelector.value;
+  document.body.classList.remove("dark", "light");
+  document.body.classList.add(theme);
+});
+
+// Font Toggle (updates --font-main)
+const fontSelector = document.getElementById("fontSelector");
+fontSelector.addEventListener("change", () => {
+  const font = fontSelector.value;
+  document.documentElement.style.setProperty("--font-main", font);
+});
+
+// Color Swatch Toggle
+document.querySelectorAll('.color-swatch').forEach(swatch => {
+  swatch.addEventListener('click', () => {
+    const colorClass = swatch.getAttribute("data-color");
+    const colorValue = getComputedStyle(document.documentElement).getPropertyValue(`--${colorClass}`);
+    document.documentElement.style.setProperty("--theme-color", colorValue.trim());
+
+    // Highlight swatch aktif
+    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+    swatch.classList.add('active');
+  });
+});
+
+// Neumorphic press effect
+document.querySelectorAll('.neumorphic').forEach(el => {
+  el.addEventListener('mousedown', () => el.classList.add('pressed'));
+  el.addEventListener('mouseup', () => el.classList.remove('pressed'));
+  el.addEventListener('mouseleave', () => el.classList.remove('pressed'));
+});
+
+const songs = [
+  { title: "Karl Marx - Chill Vibes", src: "neumorphic-01.mp3" },
+  { title: "Nietzsche - Night Drive", src: "neumorphic-02.mp3" },
+  { title: "Plato - Mood Swing", src: "neumorphic-03.mp3" },
+  { title: "Aristoteles - Last Day", src: "neumorphic-04.mp3" }
+];
+
+let currentSongIndex = 0;
+
+const audio = new Audio();
+const playBtn = document.getElementById("btnPlayPause");
+const iconPlay = document.getElementById("iconPlay");
+const iconPause = document.getElementById("iconPause");
+const btnPrev = document.getElementById("btnPrev");
+const btnNext = document.getElementById("btnNext");
+const songTitle = document.getElementById("songTitle");
+const progress = document.getElementById("progress");
+const progressContainer = document.getElementById("progressContainer");
+const currentTimeEl = document.getElementById("currentTime");
+const durationEl = document.getElementById("duration");
+
+function loadSong(index) {
+  const song = songs[index];
+  audio.src = song.src;
+  songTitle.textContent = song.title;
+  audio.load();
+}
+
+function togglePlayPause() {
+  if (audio.paused) {
+    audio.play();
+    iconPlay.style.display = "none";
+    iconPause.style.display = "inline";
+  } else {
+    audio.pause();
+    iconPlay.style.display = "inline";
+    iconPause.style.display = "none";
+  }
+}
+
+function prevSong() {
+  currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+  loadSong(currentSongIndex);
+  audio.play();
+  togglePlayPauseIcons(true);
+}
+
+function nextSong() {
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  loadSong(currentSongIndex);
+  audio.play();
+  togglePlayPauseIcons(true);
+}
+
+function togglePlayPauseIcons(isPlaying) {
+  iconPlay.style.display = isPlaying ? "none" : "inline";
+  iconPause.style.display = isPlaying ? "inline" : "none";
+}
+
+// Update progress bar
+audio.addEventListener("timeupdate", () => {
+  const { currentTime, duration } = audio;
+  const progressPercent = (currentTime / duration) * 100;
+  progress.style.width = `${progressPercent}%`;
+
+  // Time formatting
+  currentTimeEl.textContent = formatTime(currentTime);
+  durationEl.textContent = formatTime(duration);
+});
+
+progressContainer.addEventListener("click", (e) => {
+  const width = progressContainer.clientWidth;
+  const clickX = e.offsetX;
+  const duration = audio.duration;
+
+  audio.currentTime = (clickX / width) * duration;
+});
+
+function formatTime(time) {
+  if (isNaN(time)) return "00:00";
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+}
+
+audio.addEventListener("ended", nextSong);
+
+// Init
+loadSong(currentSongIndex);
+
+// Events
+playBtn.addEventListener("click", togglePlayPause);
+btnPrev.addEventListener("click", prevSong);
+btnNext.addEventListener("click", nextSong);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const preloader = document.getElementById("Preloader");
+  const secretLoader = document.getElementById("secretLoader");
+
+  // Klik untuk langsung buka
+  secretLoader.addEventListener("click", () => {
+    preloader.style.opacity = "0";
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 300); // tunggu animasi fade-out
+  });
+});
+
+const typed = new Typed("#typed", {
+  strings: ["Tech Explorer","Art Enthusiast","Creative Digital","Development Stream"],
+  typeSpeed: 60,
+  backSpeed: 40,
+  backDelay: 1500,
+  loop: true,
+});
+
+function changeVideo(videoId) {
+const iframe = document.getElementById('mainVideo');
+iframe.src = `https://www.youtube.com/embed/${videoId}`;
+}
+
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("copy", e => e.preventDefault());
+</script>
+</body>
+</html>
